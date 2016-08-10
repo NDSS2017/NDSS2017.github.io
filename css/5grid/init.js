@@ -784,8 +784,37 @@
 	});
     
     setTimeout(function(){
-        url = document.location.toString()
-        anchor = "#" + url.split("?")[1];
-        $("html,body").animate({scrollTop: $(anchor).offset().top}, 500);}, 1000);  
-
+        supportList = ["doms", "urls", "noise", "duplicate", "final", "code", "misc"];
+        
+        url = document.location.toString();
+        anchor = url.split("?")[1];
+        
+        if (supportList.indexOf(anchor) != -1){
+            anchor = "#" + anchor;
+            $("html,body").animate({scrollTop: $(anchor).offset().top}, 500);
+        }
+        
+        //set the click function for doms links
+        domLinks = document.getElementsByClassName('domdownload');
+        
+        for(var i = 0; i < domLinks.length; i++)
+        {
+            domLinks[i].onclick = function()
+            {
+                elemid = this.id.toString();
+                file = elemid.split("_")[0];
+                index = elemid.split("_")[1];
+                
+                file = file + ".tar.bz2.a" + index;
+                url = "http://ssrg.site.uottawa.ca/NDSS2017/DOMs/" + file;
+                
+                var obj=document.getElementById('download'); 
+                obj.contentWindow.location.href = url;
+            };
+        }
+        
+    }, 1000);  
+    
+    
+    
 })();
