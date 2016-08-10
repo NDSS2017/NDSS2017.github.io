@@ -809,7 +809,27 @@
                 url = "http://ssrg.site.uottawa.ca/NDSS2017/DOMs/" + file;
                 
                 var obj=document.getElementById('download'); 
-                obj.contentWindow.location.href = url;
+                //obj.contentWindow.location.href = url;
+                window.open(url)
+            };
+        }
+        
+        //set the click function for other file links
+        domLinks = document.getElementsByClassName('filedownload');
+        
+        for(var i = 0; i < domLinks.length; i++)
+        {
+            domLinks[i].onclick = function()
+            {
+                elemid = this.id.toString();
+                file = elemid.split("_")[0];
+                index = elemid.split("_")[1];
+                
+                url = file;
+                
+                var obj=document.getElementById('download'); 
+                //obj.contentWindow.location.href = url;
+                window.open(url)
             };
         }
         
